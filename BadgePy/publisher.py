@@ -24,7 +24,7 @@ effects = {
 	'rainbow':		6
 }
 
-def publish(color1, color2, effect, effect_speed):
+def publish(color1=None, color2=None, effect=None, effect_speed=None):
 	if color1: 
 		client.publish('feeds/color1', color1)
 	if color2:
