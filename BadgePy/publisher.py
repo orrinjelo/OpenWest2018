@@ -28,13 +28,13 @@ effects = {
 def publish(color1=None, color2=None, effect=None, effect_speed=None):
 	if color1: 
 		try:
-			c = color.colors(color1)
+			c = color.colors[color1].hex_format()
 		except:
 			c = color1
 		client.publish('feeds/color1', c)
 	if color2:
 		try:
-			c = color.colors(color2)
+			c = color.colors[color2].hex_format()
 		except:
 			c = color2
 		client.publish('feeds/color2', c)
