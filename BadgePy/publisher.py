@@ -1,4 +1,5 @@
 import paho.mqtt.client as mqtt
+import color_constants as color
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
@@ -26,9 +27,17 @@ effects = {
 
 def publish(color1=None, color2=None, effect=None, effect_speed=None):
 	if color1: 
-		client.publish('feeds/color1', color1)
+		try:
+			c = color.colors(color1)
+		except:
+			c = color1
+		client.publish('feeds/color1', c)
 	if color2:
-		client.publish('feeds/color2', color2)
+		try:
+			c = color.colors(color2)
+		except:
+			c = color2
+		client.publish('feeds/color2', c)
 	if effect:
 		try:
 			int(effect)
