@@ -25,24 +25,29 @@ effects = {
 	'rainbow':		6
 }
 
-def publish(color1=None, color2=None, effect=None, effect_speed=None):
+global_channel = 'feeds'
+
+def publish(color1=None, color2=None, effect=None, effect_speed=None, channel=None):
+	global global_channel
+	if channel:
+		global_channel = channel
 	if color1: 
 		try:
 			c = color.colors[color1].hex_format()
 		except:
 			c = color1
-		client.publish('feeds/color1', c)
+		client.publish(f'{global_channel}/color1', c)
 	if color2:
 		try:
 			c = color.colors[color2].hex_format()
 		except:
 			c = color2
-		client.publish('feeds/color2', c)
+		client.publish(f'{global_channel}/color2', c)
 	if effect:
 		try:
 			int(effect)
 		except:
 			effect = effects[effect]
-		client.publish('feeds/effect', effect)
+		client.publish(f'{global_channel}/effect', effect)
 	if effect_speed:
-		client.publish('feeds/effectspeed', effect_speed)
+		client.publish(f'{global_channel}/effectspeed', effect_speed)
